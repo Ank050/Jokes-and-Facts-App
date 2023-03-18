@@ -1,133 +1,166 @@
-import 'dart:async';
-
-import 'package:http/http.dart' as http;
+import 'package:ankjokesapp/facts.dart';
 import 'package:flutter/material.dart';
+import 'jokes.dart';
 
-void main() {
-  runApp(const TestScreen());
-}
-
-class TestScreen extends StatelessWidget {
-  const TestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.yellow,
+void main() => runApp(
+      const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "App",
+        home: HomeScreen(),
       ),
-      title: 'This is a test app',
-      home: const HomeScreen(),
     );
-  }
-}
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final ButtonPress buttonPress = ButtonPress();
-  String? joke;
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: SizedBox(
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            colors: [
+              Color(0xFF3366FF),
+              Color(0xFF00CCFF),
+            ],
+            begin: FractionalOffset(0.0, 0.0),
+            end: FractionalOffset(1.0, 0.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          leading: SizedBox(
             width: 10,
             height: 10,
             child: Image.asset(
-              "assets/images/lol.png",
+              "assets/images/pfp.png",
               fit: BoxFit.contain,
-            )),
-        title: const Text(
-          "MR DAD",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 30,
-              fontFamily: "Roboto",
-              fontWeight: FontWeight.bold),
+            ),
+          ),
+          title: const Text(
+            "ANKCRAFT050",
+            style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 30,
+                fontFamily: "Roboto",
+                fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Color.fromARGB(255, 3, 88, 172),
         ),
-        backgroundColor: Colors.yellow,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        body: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 5, right: 5, top: 40),
-              child: Text(
-                "Are you ready for a good laugh? Click the button below to generate a hilarious dad joke that will have you rolling on the floor laughing!",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center,
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Color.fromARGB(255, 0, 225, 255),
+                      width: 1,
+                    ),
+                    color: Color.fromARGB(255, 188, 255, 253),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      "Get ready to laugh! Press the button below to access our jokes generator page and prepare yourself for an endless supply of hilarious jokes.",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               ),
             ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.all(50),
-                child: Column(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () async {
-                        final String newJoke = await buttonPress.getJoke();
-                        setState(() {
-                          joke = newJoke;
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 50, vertical: 25),
-                        backgroundColor: const Color.fromARGB(255, 236, 245, 1),
-                        textStyle: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                padding: const EdgeInsets.only(top: 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const JokesScreen(),
                       ),
-                      child: const Text(
-                        'Get Joke',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 25),
+                    backgroundColor: Color.fromARGB(255, 0, 170, 255),
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                    if (joke != null)
-                      Center(
-                        child: Container(
-                          height: 300,
-                          width: 450,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: const Color.fromARGB(255, 245, 203, 120),
-                              width: 3,
-                            ),
-                            color: const Color.fromARGB(255, 243, 230, 185),
-                          ),
-                          margin: const EdgeInsets.only(top: 70),
-                          padding: const EdgeInsets.all(10),
-                          child: Center(
-                            child: Text(
-                              joke!,
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  fontFamily: "Roboto",
-                                  fontWeight: FontWeight.w500),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
+                  ),
+                  child: const Text(
+                    'Go To Jokes',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 60.0, left: 20, right: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Color.fromARGB(255, 0, 255, 234),
+                      width: 1,
+                    ),
+                    color: Color.fromARGB(255, 188, 252, 255),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text(
+                      "Expand your knowledge with just a click! Press the button below to access our facts generator page and discover fascinating facts on a variety of topics.",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FactScreen(),
                       ),
-                  ],
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 25),
+                    backgroundColor: Color.fromARGB(255, 4, 163, 255),
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  child: const Text(
+                    'Go To Facts',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -135,20 +168,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-}
-
-class ButtonPress {
-  Future<String> getJoke() async {
-    final response = await http.get(
-      Uri.parse('https://icanhazdadjoke.com/'),
-      headers: {'Accept': 'text/plain'},
-    );
-
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      throw Exception('Failed to load joke');
-    }
   }
 }
