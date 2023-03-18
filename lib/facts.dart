@@ -35,7 +35,7 @@ class _FactScreenState extends State<FactScreen> {
               fontFamily: "Roboto",
               fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color.fromARGB(255, 144, 255, 59),
+        backgroundColor: const Color.fromARGB(255, 144, 255, 59),
       ),
       body: Center(
         child: Column(
@@ -71,7 +71,7 @@ class _FactScreenState extends State<FactScreen> {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 50, vertical: 25),
-                        backgroundColor: Color.fromARGB(255, 50, 245, 1),
+                        backgroundColor: const Color.fromARGB(255, 50, 245, 1),
                         textStyle: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -91,10 +91,10 @@ class _FactScreenState extends State<FactScreen> {
                           width: 450,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color.fromARGB(255, 133, 245, 120),
+                              color: const Color.fromARGB(255, 133, 245, 120),
                               width: 3,
                             ),
-                            color: Color.fromARGB(255, 197, 243, 185),
+                            color: const Color.fromARGB(255, 197, 243, 185),
                           ),
                           margin: const EdgeInsets.only(top: 70),
                           padding: const EdgeInsets.all(10),

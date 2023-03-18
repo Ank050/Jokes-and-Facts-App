@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                 fontFamily: "Roboto",
                 fontWeight: FontWeight.bold),
           ),
-          backgroundColor: Color.fromARGB(255, 3, 88, 172),
+          backgroundColor: const Color.fromARGB(255, 3, 88, 172),
         ),
         body: Column(
           children: [
@@ -57,10 +57,10 @@ class HomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: Color.fromARGB(255, 0, 225, 255),
+                      color: const Color.fromARGB(255, 0, 225, 255),
                       width: 1,
                     ),
-                    color: Color.fromARGB(255, 188, 255, 253),
+                    color: const Color.fromARGB(255, 188, 255, 253),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(5),
@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 25),
-                    backgroundColor: Color.fromARGB(255, 0, 170, 255),
+                    backgroundColor: const Color.fromARGB(255, 0, 170, 255),
                     textStyle: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -114,10 +114,10 @@ class HomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: Color.fromARGB(255, 0, 255, 234),
+                      color: const Color.fromARGB(255, 0, 255, 234),
                       width: 1,
                     ),
-                    color: Color.fromARGB(255, 188, 252, 255),
+                    color: const Color.fromARGB(255, 188, 252, 255),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(5),
@@ -149,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 25),
-                    backgroundColor: Color.fromARGB(255, 4, 163, 255),
+                    backgroundColor: const Color.fromARGB(255, 4, 163, 255),
                     textStyle: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
